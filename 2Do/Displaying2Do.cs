@@ -25,52 +25,50 @@ namespace _2Do
         SqlConnection cnn;
         SqlCommand command;
 
-
-
         public Displaying2Do()
         {
             InitializeComponent();
         }
         private void Displaying2Do_Load(object sender, EventArgs e)
         {
-            string Query = "SELECT * FROM tbl_2DoList";
-            cnn = new SqlConnection(connectionString);
-
-            cnn.Open();
-
-            command = new SqlCommand(Query, cnn);
-            using (SqlDataReader reader = command.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                // We make a query
+                string Query = "SELECT * FROM tbl_2DoList";
+                // We connect to the DB
+                cnn = new SqlConnection(connectionString);
+                // We open the database
+                cnn.Open();
+                // We make the command
+                command = new SqlCommand(Query, cnn);
+                // We execute the command
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    int ToDoID = int.Parse(reader["ToDoID"].ToString());
-                    string ToDoTitle = reader["ToDoTitle"].ToString();
-                    string ToDoDesc = reader["ToDoDesc"].ToString();
-                    bool Done = bool.Parse(reader["Done"].ToString());
-                    //int tempDone = int.Parse(reader["Done"].ToString());
-                    //if (tempDone == 0)
-                    //{
-                    //    Done = false;
-                    //}
-                    //else
-                    //{
-                    //    Done = true;
-                    //}
-                    DateTime? DateCreated = DateTime.Parse(reader["DateCreated"].ToString()).Date;
-                    //DateTime? DateDone = DateTime.Parse(reader["DateDone"].ToString()).Date;
-                    DateTime? DateDone = null;
+                    while (reader.Read())
+                    {
+                        int ToDoID = int.Parse(reader["ToDoID"].ToString());
+                        string ToDoTitle = reader["ToDoTitle"].ToString();
+                        string ToDoDesc = reader["ToDoDesc"].ToString();
+                        bool Done = bool.Parse(reader["Done"].ToString());
+                        DateTime? DateCreated = DateTime.Parse(reader["DateCreated"].ToString()).Date;
+                        DateTime? DateDone = null;
 
 
-                    Tasks CreateTask = new Tasks(ToDoID, ToDoTitle, ToDoDesc, Done, DateCreated, DateDone);
-                    CurrentTasks.Add(CreateTask);
+                        Tasks CreateTask = new Tasks(ToDoID, ToDoTitle, ToDoDesc, Done, DateCreated, DateDone);
+                        CurrentTasks.Add(CreateTask);
+                    }
+                    command.Dispose();
+                    cnn.Close();
                 }
-                command.Dispose();
-                cnn.Close();
+                foreach (var task in CurrentTasks)
+                {
+                    TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################## \n Descripition : {task.ToDoDesc} \n##################\n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                }
+                StatusTB.Text = CurrentTasks.Count.ToString();
             }
-
-            foreach (var task in CurrentTasks)
+            catch (Exception ex)
             {
-                TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n Descripition : {task.ToDoDesc} \n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -82,25 +80,37 @@ namespace _2Do
             TaskOutputter.Clear();
             foreach (var task in CurrentTasks)
             {
-                TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n Descripition : {task.ToDoDesc} \n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################## \n Descripition : {task.ToDoDesc} \n##################\n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
             }
         }
 
         private void FindByIDBTN_Click(object sender, EventArgs e)
         {
-
-            int inputBoxResponse = int.Parse(Interaction.InputBox("Enter in the Tasks ID", "Filter","", 500, 300));
-
-
-            foreach (var task in CurrentTasks)
+            try
             {
-                if (task.ToDoID == inputBoxResponse)
+
+
+                int inputBoxResponse = int.Parse(Interaction.InputBox("Enter in the Tasks ID", "Filter", "", 300, 100));
+
+                foreach (var task in CurrentTasks)
                 {
-                    TaskOutputter.Clear();
-                    TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n Descripition : {task.ToDoDesc} \n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                    if (task.ToDoID == inputBoxResponse)
+                    {
+                        TaskOutputter.Clear();
+                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                    }
+                    else { }
                 }
-                else { }
             }
+            catch (Exception ex) { }
+        }
+        private void FindByTitleBTN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int inputBoxResponse = int.Parse(Interaction.InputBox("Enter the Task Title", "Filter", "", 300, 100));
+            }
+            catch (Exception ex) { }
         }
     }
 }

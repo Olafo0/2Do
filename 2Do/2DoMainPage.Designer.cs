@@ -66,7 +66,7 @@
             panel1.Controls.Add(MenuBTN);
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(132, 37);
+            panel1.Size = new Size(132, 41);
             panel1.TabIndex = 1;
             // 
             // label1
@@ -94,7 +94,7 @@
             // panel2
             // 
             panel2.Controls.Add(ViewToDoBTN);
-            panel2.Location = new Point(3, 46);
+            panel2.Location = new Point(3, 50);
             panel2.Name = "panel2";
             panel2.Size = new Size(144, 37);
             panel2.TabIndex = 2;
@@ -119,7 +119,7 @@
             // panel3
             // 
             panel3.Controls.Add(AddTaskPageBTN);
-            panel3.Location = new Point(3, 89);
+            panel3.Location = new Point(3, 93);
             panel3.Name = "panel3";
             panel3.Size = new Size(144, 37);
             panel3.TabIndex = 5;
@@ -161,8 +161,10 @@
             Controls.Add(MainDisplay);
             Controls.Add(Sidebar);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainPage";
-            Text = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "2Do";
             Load += MainPage_Load;
             Sidebar.ResumeLayout(false);
             panel1.ResumeLayout(false);

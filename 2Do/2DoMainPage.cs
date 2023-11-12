@@ -36,6 +36,7 @@ namespace _2Do
         {
             if (this.MainDisplay.Controls.Count > 0)
                 this.MainDisplay.Controls.RemoveAt(0);
+
             Form f = Form as Form;
             f.TopLevel = false;
             f.Dock = DockStyle.Fill;
@@ -56,7 +57,7 @@ namespace _2Do
 
         private void MainPage_Load(object sender, EventArgs e)
         {
-
+            loadform(new Displaying2Do());
         }
 
         private void ViewToDoBTN_Click(object sender, EventArgs e)
@@ -66,9 +67,10 @@ namespace _2Do
 
         private void AddTaskPageBTN_Click(object sender, EventArgs e)
         {
-
+            loadform(new Adding2Do());
         }
 
+        // Main menu label
         private void label1_Click(object sender, EventArgs e)
         {
 
