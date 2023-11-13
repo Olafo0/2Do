@@ -100,17 +100,35 @@ namespace _2Do
                         TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
                     }
                     else { }
+
+
                 }
             }
             catch (Exception ex) { }
         }
         private void FindByTitleBTN_Click(object sender, EventArgs e)
         {
-            try
+
+            string? inputBoxResponse = Interaction.InputBox("Enter the Task Title", "Filter", "", 300, 100);
+
+            if (string.IsNullOrEmpty(inputBoxResponse))
             {
-                int inputBoxResponse = int.Parse(Interaction.InputBox("Enter the Task Title", "Filter", "", 300, 100));
+                MessageBox.Show("You've haven't entered anything", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception ex) { }
+            else
+            {
+                try
+                {
+                    var foundTasks = CurrentTasks.Where(x => x.ToDoTitle.Contains(inputBoxResponse)).ToList();
+
+                    foreach (var task in foundTasks)
+                    {
+                        TaskOutputter.Clear();
+                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                    }
+                }
+                catch (Exception ex) { }
+            }
         }
     }
 }

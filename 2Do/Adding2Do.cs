@@ -33,8 +33,12 @@ namespace _2Do
 
         private void AddBTN_Click(object sender, EventArgs e)
         {
-            var CurrentDate = DateOnly.FromDateTime(DateTime.Now);
-            string Query = $"INSERT INTO tbl_2DoList(ToDoTitle,ToDoDesc,Done,DateCreated) VALUES('{TitleTB.Text}','{DescriptionTB.Text}',{0},'{CurrentDate}')";
+            //var CurrentDate = DateOnly.FromDateTime(DateTime.Now);
+            //MessageBox.Show(CurrentDate.ToString());
+
+            DateTime CurrentDate = DateTime.Now;
+            string formatedDate = CurrentDate.ToString("yyyy-MM-dd");
+            string Query = $"INSERT INTO tbl_2DoList(ToDoTitle,ToDoDesc,Done,DateCreated) VALUES('{TitleTB.Text}','{DescriptionTB.Text}',{0},'{formatedDate}')";
             try
             {
                 using (cnn = new SqlConnection(connectionString))

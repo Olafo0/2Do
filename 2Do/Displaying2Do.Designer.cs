@@ -35,7 +35,9 @@
             groupBox1 = new GroupBox();
             StatusTB = new TextBox();
             label1 = new Label();
+            groupBox2 = new GroupBox();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // TaskOutputter
@@ -66,7 +68,7 @@
             FindByIDBTN.Cursor = Cursors.Hand;
             FindByIDBTN.FlatStyle = FlatStyle.Flat;
             FindByIDBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            FindByIDBTN.Location = new Point(12, 24);
+            FindByIDBTN.Location = new Point(6, 22);
             FindByIDBTN.Name = "FindByIDBTN";
             FindByIDBTN.Size = new Size(100, 23);
             FindByIDBTN.TabIndex = 3;
@@ -79,7 +81,7 @@
             FindByTitleBTN.Cursor = Cursors.Hand;
             FindByTitleBTN.FlatStyle = FlatStyle.Flat;
             FindByTitleBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            FindByTitleBTN.Location = new Point(12, 53);
+            FindByTitleBTN.Location = new Point(6, 62);
             FindByTitleBTN.Name = "FindByTitleBTN";
             FindByTitleBTN.Size = new Size(100, 23);
             FindByTitleBTN.TabIndex = 4;
@@ -118,14 +120,25 @@
             label1.TabIndex = 6;
             label1.Text = "2Do's ->";
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(FindByIDBTN);
+            groupBox2.Controls.Add(FindByTitleBTN);
+            groupBox2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox2.Location = new Point(12, 24);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(112, 100);
+            groupBox2.TabIndex = 6;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Filters";
+            // 
             // Displaying2Do
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 482);
+            Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Controls.Add(FindByTitleBTN);
-            Controls.Add(FindByIDBTN);
             Controls.Add(ClearBTN);
             Controls.Add(TaskOutputter);
             FormBorderStyle = FormBorderStyle.None;
@@ -133,6 +146,7 @@
             Load += Displaying2Do_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -145,5 +159,6 @@
         private GroupBox groupBox1;
         private TextBox StatusTB;
         private Label label1;
+        private GroupBox groupBox2;
     }
 }
