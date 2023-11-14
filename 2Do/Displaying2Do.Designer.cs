@@ -38,7 +38,7 @@
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
             RemoveBTN = new Button();
-            button2 = new Button();
+            MarkCompleteBTN = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -139,7 +139,7 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(RemoveBTN);
-            groupBox3.Controls.Add(button2);
+            groupBox3.Controls.Add(MarkCompleteBTN);
             groupBox3.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox3.Location = new Point(12, 130);
             groupBox3.Name = "groupBox3";
@@ -161,17 +161,18 @@
             RemoveBTN.UseVisualStyleBackColor = true;
             RemoveBTN.Click += RemoveBTN_Click;
             // 
-            // button2
+            // MarkCompleteBTN
             // 
-            button2.Cursor = Cursors.Hand;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(6, 62);
-            button2.Name = "button2";
-            button2.Size = new Size(100, 23);
-            button2.TabIndex = 4;
-            button2.Text = "Mark complete";
-            button2.UseVisualStyleBackColor = true;
+            MarkCompleteBTN.Cursor = Cursors.Hand;
+            MarkCompleteBTN.FlatStyle = FlatStyle.Flat;
+            MarkCompleteBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            MarkCompleteBTN.Location = new Point(6, 62);
+            MarkCompleteBTN.Name = "MarkCompleteBTN";
+            MarkCompleteBTN.Size = new Size(100, 23);
+            MarkCompleteBTN.TabIndex = 4;
+            MarkCompleteBTN.Text = "Mark complete";
+            MarkCompleteBTN.UseVisualStyleBackColor = true;
+            MarkCompleteBTN.Click += MarkCompleteBTN_Click;
             // 
             // Displaying2Do
             // 
@@ -205,6 +206,6 @@
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private Button RemoveBTN;
-        private Button button2;
+        private Button MarkCompleteBTN;
     }
 }

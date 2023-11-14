@@ -136,7 +136,7 @@ namespace _2Do
             string inputBoxResponse = Interaction.InputBox("Enter the Tasks ID to remove it", "Remove task", "", 300, 100);
 
 
-            if (string.IsNullOrEmpty(inputBoxResponse)) 
+            if (string.IsNullOrEmpty(inputBoxResponse))
             {
                 MessageBox.Show("You've haven't entered anything", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -163,6 +163,46 @@ namespace _2Do
                         TaskOutputter.Clear();
                         TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void MarkCompleteBTN_Click(object sender, EventArgs e)
+        {
+            DateTime CurrentDate = DateTime.Now;
+            string formatedDate = CurrentDate.ToString("yyyy-MM-dd");
+
+
+            string inputBoxResponse = Interaction.InputBox("Enter the Tasks ID you want to mark complete", "Complete task", "", 300, 100);
+
+            if (String.IsNullOrEmpty(inputBoxResponse))
+            {
+
+            }
+            else
+            {
+                int IDToComplete = int.Parse(inputBoxResponse);
+                string Query = $"UPDATE _ToDoList SET Done = {1}, DateDone = '{formatedDate}',WHERE ToDoID={IDToComplete}";
+
+                try
+                {
+                    using (cnn = new SqlConnection(connectionString))
+                    {
+                        cnn.Open();
+                        command = new SqlCommand(Query, cnn);
+                        command.ExecuteNonQuery();
+                    }
+                    command.Dispose();
+                    cnn.Close();
+
+                    var foundTask = CurrentTasks.Single(x => x.ToDoID == IDToComplete);
+                    foundTask.Done = true;
+                    foundTask.DateDone = DateTime.Now;
+
                 }
                 catch (Exception ex)
                 {
