@@ -21,7 +21,7 @@ namespace _2Do
         List<Tasks> CurrentTasks = new List<Tasks>();
 
 
-        string connectionString = "Data Source=DESKTOP-DNB9KRF;Initial Catalog=2DoDB;Integrated Security=True;";
+        string connectionString = "Data Source=#;Initial Catalog=#;User ID =sa;Password=sa2023;";
         SqlConnection cnn;
         SqlCommand command;
 
@@ -34,7 +34,7 @@ namespace _2Do
             try
             {
                 // We make a query
-                string Query = "SELECT * FROM tbl_2DoList";
+                string Query = "SELECT * FROM _ToDoList";
                 // We connect to the DB
                 cnn = new SqlConnection(connectionString);
                 // We open the database
@@ -128,6 +128,46 @@ namespace _2Do
                     }
                 }
                 catch (Exception ex) { }
+            }
+        }
+
+        private void RemoveBTN_Click(object sender, EventArgs e)
+        {
+            string inputBoxResponse = Interaction.InputBox("Enter the Tasks ID to remove it", "Remove task", "", 300, 100);
+
+
+            if (string.IsNullOrEmpty(inputBoxResponse)) 
+            {
+                MessageBox.Show("You've haven't entered anything", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                int IDToRemove = int.Parse(inputBoxResponse);
+                string Query = $"DELETE FROM _ToDoList WHERE ToDoID={IDToRemove}";
+                try
+                {
+                    using (cnn = new SqlConnection(connectionString))
+                    {
+                        cnn.Open();
+                        command = new SqlCommand(Query, cnn);
+                        command.ExecuteNonQuery();
+                    }
+                    command.Dispose();
+                    cnn.Close();
+
+                    var foundTask = CurrentTasks.Single(x => x.ToDoID == IDToRemove);
+                    CurrentTasks.Remove(foundTask);
+
+                    foreach (var task in CurrentTasks)
+                    {
+                        TaskOutputter.Clear();
+                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

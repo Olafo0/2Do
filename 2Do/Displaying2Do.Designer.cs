@@ -36,8 +36,12 @@
             StatusTB = new TextBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            groupBox3 = new GroupBox();
+            RemoveBTN = new Button();
+            button2 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // TaskOutputter
@@ -55,7 +59,7 @@
             ClearBTN.Cursor = Cursors.Hand;
             ClearBTN.FlatStyle = FlatStyle.Flat;
             ClearBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            ClearBTN.Location = new Point(12, 328);
+            ClearBTN.Location = new Point(18, 328);
             ClearBTN.Name = "ClearBTN";
             ClearBTN.Size = new Size(100, 23);
             ClearBTN.TabIndex = 2;
@@ -132,11 +136,49 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Filters";
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(RemoveBTN);
+            groupBox3.Controls.Add(button2);
+            groupBox3.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox3.Location = new Point(12, 130);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(112, 100);
+            groupBox3.TabIndex = 7;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Edit";
+            // 
+            // RemoveBTN
+            // 
+            RemoveBTN.Cursor = Cursors.Hand;
+            RemoveBTN.FlatStyle = FlatStyle.Flat;
+            RemoveBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            RemoveBTN.Location = new Point(6, 22);
+            RemoveBTN.Name = "RemoveBTN";
+            RemoveBTN.Size = new Size(100, 23);
+            RemoveBTN.TabIndex = 3;
+            RemoveBTN.Text = "Remove";
+            RemoveBTN.UseVisualStyleBackColor = true;
+            RemoveBTN.Click += RemoveBTN_Click;
+            // 
+            // button2
+            // 
+            button2.Cursor = Cursors.Hand;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.Location = new Point(6, 62);
+            button2.Name = "button2";
+            button2.Size = new Size(100, 23);
+            button2.TabIndex = 4;
+            button2.Text = "Mark complete";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // Displaying2Do
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 482);
+            Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(ClearBTN);
@@ -147,6 +189,7 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -160,5 +203,8 @@
         private TextBox StatusTB;
         private Label label1;
         private GroupBox groupBox2;
+        private GroupBox groupBox3;
+        private Button RemoveBTN;
+        private Button button2;
     }
 }

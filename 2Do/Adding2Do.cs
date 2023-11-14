@@ -16,7 +16,7 @@ namespace _2Do
     public partial class Adding2Do : Form
     {
 
-        string connectionString = "Data Source=DESKTOP-DNB9KRF;Initial Catalog=2DoDB;Integrated Security=True;";
+        string connectionString = "Data Source=LC21205XX\\SQLEXPRESS;Initial Catalog=ToDoListDB;User ID =sa;Password=sa2023;";
         SqlConnection cnn;
         SqlCommand cmd;
 
@@ -33,12 +33,11 @@ namespace _2Do
 
         private void AddBTN_Click(object sender, EventArgs e)
         {
-            //var CurrentDate = DateOnly.FromDateTime(DateTime.Now);
-            //MessageBox.Show(CurrentDate.ToString());
+    
 
             DateTime CurrentDate = DateTime.Now;
             string formatedDate = CurrentDate.ToString("yyyy-MM-dd");
-            string Query = $"INSERT INTO tbl_2DoList(ToDoTitle,ToDoDesc,Done,DateCreated) VALUES('{TitleTB.Text}','{DescriptionTB.Text}',{0},'{formatedDate}')";
+            string Query = $"INSERT INTO _ToDoList(ToDoTitle,ToDoDesc,Done,DateCreated) VALUES('{TitleTB.Text}','{DescriptionTB.Text}',{0},'{formatedDate}')";
             try
             {
                 using (cnn = new SqlConnection(connectionString))
