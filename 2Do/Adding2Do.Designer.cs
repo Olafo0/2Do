@@ -110,6 +110,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Adding2Do";
             Text = "Adding2Do";
+            Load += Adding2Do_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);

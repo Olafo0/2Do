@@ -16,7 +16,8 @@ namespace _2Do
     public partial class Adding2Do : Form
     {
 
-        string connectionString = "Data Source=LC21205XX\\SQLEXPRESS;Initial Catalog=ToDoListDB;User ID =sa;Password=sa2023;";
+        // string connectionString = "Data Source=LC21205XX\\SQLEXPRESS;Initial Catalog=ToDoListDB;User ID =sa;Password=sa2023;"; School
+        string connectionString = "Data Source=DESKTOP-DNB9KRF;Initial Catalog=2DoDB;Integrated Security=True;";
         SqlConnection cnn;
         SqlCommand cmd;
 
@@ -33,29 +34,40 @@ namespace _2Do
 
         private void AddBTN_Click(object sender, EventArgs e)
         {
-    
-
-            DateTime CurrentDate = DateTime.Now;
-            string formatedDate = CurrentDate.ToString("yyyy-MM-dd");
-            string Query = $"INSERT INTO _ToDoList(ToDoTitle,ToDoDesc,Done,DateCreated) VALUES('{TitleTB.Text}','{DescriptionTB.Text}',{0},'{formatedDate}')";
-            try
+            if (String.IsNullOrEmpty(TitleTB.Text) && String.IsNullOrEmpty(DescriptionTB.Text))
             {
-                using (cnn = new SqlConnection(connectionString))
+
+            }
+
+            else
+            {
+                DateTime CurrentDate = DateTime.Now;
+                string formatedDate = CurrentDate.ToString("yyyy-MM-dd");
+                string Query = $"INSERT INTO tbl_2DoList(ToDoTitle,ToDoDesc,Done,DateCreated) VALUES('{TitleTB.Text}','{DescriptionTB.Text}',{0},'{formatedDate}')";
+                try
                 {
-                    cnn.Open();
-                    cmd = new SqlCommand(Query, cnn);
-                    int rows = cmd.ExecuteNonQuery();
+                    using (cnn = new SqlConnection(connectionString))
+                    {
+                        cnn.Open();
+                        cmd = new SqlCommand(Query, cnn);
+                        int rows = cmd.ExecuteNonQuery();
 
+                    }
+                    cmd.Dispose();
+                    cnn.Close();
+                    TitleTB.Text = "";
+                    DescriptionTB.Text = "";
                 }
-                cmd.Dispose();
-                cnn.Close();
-                TitleTB.Text = "";
-                DescriptionTB.Text = "";
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+        }
+
+        private void Adding2Do_Load(object sender, EventArgs e)
+        {
 
         }
     }

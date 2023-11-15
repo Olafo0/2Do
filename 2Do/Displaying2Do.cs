@@ -21,7 +21,8 @@ namespace _2Do
         List<Tasks> CurrentTasks = new List<Tasks>();
 
 
-        string connectionString = "Data Source=#;Initial Catalog=#;User ID =sa;Password=sa2023;";
+       //  string connectionString = "Data Source=LC21205XX\\SQLEXPRESS;Initial Catalog=ToDoListDB;User ID =sa;Password=sa2023;"; string
+        string connectionString = "Data Source=DESKTOP-DNB9KRF;Initial Catalog=2DoDB;Integrated Security=True;";
         SqlConnection cnn;
         SqlCommand command;
 
@@ -34,7 +35,7 @@ namespace _2Do
             try
             {
                 // We make a query
-                string Query = "SELECT * FROM _ToDoList";
+                string Query = "SELECT * FROM tbl_2DoList";
                 // We connect to the DB
                 cnn = new SqlConnection(connectionString);
                 // We open the database
@@ -51,7 +52,17 @@ namespace _2Do
                         string ToDoDesc = reader["ToDoDesc"].ToString();
                         bool Done = bool.Parse(reader["Done"].ToString());
                         DateTime? DateCreated = DateTime.Parse(reader["DateCreated"].ToString()).Date;
-                        DateTime? DateDone = null;
+                        DateTime? DateDone;
+
+                        string tempDateDone = reader["DateDone"].ToString();
+                        if (String.IsNullOrEmpty(tempDateDone))
+                        {
+                            DateDone = null;
+                        }
+                        else
+                        {
+                            DateDone = DateTime.Parse(reader["DateDone"].ToString()).Date;
+                        }
 
 
                         Tasks CreateTask = new Tasks(ToDoID, ToDoTitle, ToDoDesc, Done, DateCreated, DateDone);
@@ -89,19 +100,20 @@ namespace _2Do
             try
             {
 
-
                 int inputBoxResponse = int.Parse(Interaction.InputBox("Enter in the Tasks ID", "Filter", "", 300, 100));
 
                 foreach (var task in CurrentTasks)
                 {
+                    TaskOutputter.Clear();
                     if (task.ToDoID == inputBoxResponse)
                     {
-                        TaskOutputter.Clear();
                         TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                        break;
                     }
-                    else { }
-
-
+                    else
+                    {
+                        TaskOutputter.AppendText(" * * * The ID you have provided didn't have a corrosponding Task.\n * * * Please press clear.");
+                    }
                 }
             }
             catch (Exception ex) { }
@@ -120,11 +132,11 @@ namespace _2Do
                 try
                 {
                     var foundTasks = CurrentTasks.Where(x => x.ToDoTitle.Contains(inputBoxResponse)).ToList();
-
+                    
                     foreach (var task in foundTasks)
                     {
                         TaskOutputter.Clear();
-                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n #################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
                     }
                 }
                 catch (Exception ex) { }
@@ -143,7 +155,7 @@ namespace _2Do
             else
             {
                 int IDToRemove = int.Parse(inputBoxResponse);
-                string Query = $"DELETE FROM _ToDoList WHERE ToDoID={IDToRemove}";
+                string Query = $"DELETE FROM tbl_2DoList WHERE ToDoID={IDToRemove}";
                 try
                 {
                     using (cnn = new SqlConnection(connectionString))
@@ -158,9 +170,9 @@ namespace _2Do
                     var foundTask = CurrentTasks.Single(x => x.ToDoID == IDToRemove);
                     CurrentTasks.Remove(foundTask);
 
+                    TaskOutputter.Clear();
                     foreach (var task in CurrentTasks)
                     {
-                        TaskOutputter.Clear();
                         TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
                     }
                 }
@@ -186,7 +198,7 @@ namespace _2Do
             else
             {
                 int IDToComplete = int.Parse(inputBoxResponse);
-                string Query = $"UPDATE _ToDoList SET Done = {1}, DateDone = '{formatedDate}',WHERE ToDoID={IDToComplete}";
+                string Query = $"UPDATE tbl_2DoList SET Done = {1}, DateDone = '{formatedDate}' WHERE ToDoID = {IDToComplete}";
 
                 try
                 {
@@ -202,6 +214,12 @@ namespace _2Do
                     var foundTask = CurrentTasks.Single(x => x.ToDoID == IDToComplete);
                     foundTask.Done = true;
                     foundTask.DateDone = DateTime.Now;
+
+                    TaskOutputter.Clear();
+                    foreach (var task in CurrentTasks)
+                    {
+                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                    }
 
                 }
                 catch (Exception ex)
