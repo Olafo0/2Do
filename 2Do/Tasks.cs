@@ -14,8 +14,9 @@ namespace _2Do
         public bool Done { get; set; }
         public DateTime? DateCreated { get; set; }
         public DateTime? DateDone { get; set; }
+        public int Priority { get; set; }
 
-        public Tasks(int toDoID, string? toDoTitle, string? toDoDesc, bool done, DateTime? dateCreated, DateTime? dateDone)
+        public Tasks(int toDoID, string? toDoTitle, string? toDoDesc, bool done, DateTime? dateCreated, DateTime? dateDone, int priority)
         {
             this.ToDoID = toDoID;
             this.ToDoTitle = toDoTitle;
@@ -23,6 +24,7 @@ namespace _2Do
             this.Done = done;
             this.DateCreated = dateCreated;
             this.DateDone = dateDone;
+            this.Priority = priority;
         }
     }
 }

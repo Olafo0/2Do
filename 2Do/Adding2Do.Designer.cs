@@ -34,8 +34,11 @@
             groupBox2 = new GroupBox();
             DescriptionTB = new RichTextBox();
             AddBTN = new Button();
+            groupBox3 = new GroupBox();
+            PriorityCB = new ComboBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -98,11 +101,32 @@
             AddBTN.UseVisualStyleBackColor = true;
             AddBTN.Click += AddBTN_Click;
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(PriorityCB);
+            groupBox3.Location = new Point(290, 34);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(202, 94);
+            groupBox3.TabIndex = 4;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Priority";
+            // 
+            // PriorityCB
+            // 
+            PriorityCB.DropDownStyle = ComboBoxStyle.DropDownList;
+            PriorityCB.FormattingEnabled = true;
+            PriorityCB.Items.AddRange(new object[] { "High", "Medium", "Low" });
+            PriorityCB.Location = new Point(54, 40);
+            PriorityCB.Name = "PriorityCB";
+            PriorityCB.Size = new Size(106, 23);
+            PriorityCB.TabIndex = 0;
+            // 
             // Adding2Do
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(544, 443);
+            Controls.Add(groupBox3);
             Controls.Add(AddBTN);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -114,6 +138,7 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -126,5 +151,7 @@
         private RichTextBox DescriptionTB;
         private TextBox TitleTB;
         private Button AddBTN;
+        private GroupBox groupBox3;
+        private ComboBox PriorityCB;
     }
 }

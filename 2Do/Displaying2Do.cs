@@ -53,6 +53,7 @@ namespace _2Do
                         bool Done = bool.Parse(reader["Done"].ToString());
                         DateTime? DateCreated = DateTime.Parse(reader["DateCreated"].ToString()).Date;
                         DateTime? DateDone;
+                        int Priority = int.Parse(reader["PriorityTask"].ToString());
 
                         string tempDateDone = reader["DateDone"].ToString();
                         if (String.IsNullOrEmpty(tempDateDone))
@@ -65,11 +66,14 @@ namespace _2Do
                         }
 
 
-                        Tasks CreateTask = new Tasks(ToDoID, ToDoTitle, ToDoDesc, Done, DateCreated, DateDone);
+                        Tasks CreateTask = new Tasks(ToDoID, ToDoTitle, ToDoDesc, Done, DateCreated, DateDone,);
                         CurrentTasks.Add(CreateTask);
                     }
                     command.Dispose();
                     cnn.Close();
+                    //
+                    CurrentTasks = CurrentTasks.OrderBy(x => x.Priority).ToList();
+
                 }
                 foreach (var task in CurrentTasks)
                 {

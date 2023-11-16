@@ -28,21 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             Sidebar = new FlowLayoutPanel();
             panel1 = new Panel();
             label1 = new Label();
-            MenuBTN = new PictureBox();
             panel2 = new Panel();
             ViewToDoBTN = new Button();
             panel3 = new Panel();
             AddTaskPageBTN = new Button();
-            SidebarTimer = new System.Windows.Forms.Timer(components);
             MainDisplay = new Panel();
             Sidebar.SuspendLayout();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)MenuBTN).BeginInit();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
@@ -57,13 +53,12 @@
             Sidebar.MaximumSize = new Size(139, 483);
             Sidebar.MinimumSize = new Size(139, 44);
             Sidebar.Name = "Sidebar";
-            Sidebar.Size = new Size(139, 44);
+            Sidebar.Size = new Size(139, 482);
             Sidebar.TabIndex = 0;
             // 
             // panel1
             // 
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(MenuBTN);
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(132, 41);
@@ -73,23 +68,12 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(56, 10);
+            label1.Location = new Point(43, 12);
             label1.Name = "label1";
             label1.Size = new Size(41, 17);
             label1.TabIndex = 1;
             label1.Text = "Menu";
             label1.Click += label1_Click;
-            // 
-            // MenuBTN
-            // 
-            MenuBTN.Cursor = Cursors.Hand;
-            MenuBTN.Image = (Image)resources.GetObject("MenuBTN.Image");
-            MenuBTN.Location = new Point(3, 3);
-            MenuBTN.Name = "MenuBTN";
-            MenuBTN.Size = new Size(34, 34);
-            MenuBTN.TabIndex = 1;
-            MenuBTN.TabStop = false;
-            MenuBTN.Click += MenuBTN_Click;
             // 
             // panel2
             // 
@@ -141,11 +125,6 @@
             AddTaskPageBTN.UseVisualStyleBackColor = false;
             AddTaskPageBTN.Click += AddTaskPageBTN_Click;
             // 
-            // SidebarTimer
-            // 
-            SidebarTimer.Interval = 7;
-            SidebarTimer.Tick += SidebarTimer_Tick;
-            // 
             // MainDisplay
             // 
             MainDisplay.Location = new Point(141, 0);
@@ -169,7 +148,6 @@
             Sidebar.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)MenuBTN).EndInit();
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             ResumeLayout(false);
@@ -184,8 +162,6 @@
         private Panel panel3;
         private Button AddTaskPageBTN;
         private Label label1;
-        private PictureBox MenuBTN;
-        private System.Windows.Forms.Timer SidebarTimer;
         private Panel MainDisplay;
     }
 }

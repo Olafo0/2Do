@@ -41,6 +41,22 @@ namespace _2Do
 
             else
             {
+                int PriorityNumber;
+
+                if (PriorityCB.Text == "High")
+                {
+                    PriorityNumber = 1;
+                }
+                else if (PriorityCB.Text == "Medium")
+                {
+                    PriorityNumber = 2;
+                }
+                else
+                {
+                    PriorityNumber = 3;
+                }
+                
+
                 DateTime CurrentDate = DateTime.Now;
                 string formatedDate = CurrentDate.ToString("yyyy-MM-dd");
                 string Query = $"INSERT INTO tbl_2DoList(ToDoTitle,ToDoDesc,Done,DateCreated) VALUES('{TitleTB.Text}','{DescriptionTB.Text}',{0},'{formatedDate}')";

@@ -9,29 +9,6 @@ namespace _2Do
             InitializeComponent();
         }
 
-        private void SidebarTimer_Tick(object sender, EventArgs e)
-        {
-            if (SidebarExpanded)
-            {
-                Sidebar.Height -= 15;
-                if (Sidebar.Height == Sidebar.MinimumSize.Height)
-                {
-                    SidebarExpanded = false;
-                    SidebarTimer.Stop();
-                }
-            }
-            else
-            {
-                Sidebar.Height += 15;
-                if (Sidebar.Height == Sidebar.MaximumSize.Height)
-                {
-                    SidebarExpanded = true;
-                    SidebarTimer.Stop();
-                }
-            }
-        }
-
-
         public void loadform(object Form)
         {
             if (this.MainDisplay.Controls.Count > 0)
@@ -48,11 +25,6 @@ namespace _2Do
         private void Sidebar_Paint(object sender, PaintEventArgs e)
         {
 
-        }
-
-        private void MenuBTN_Click(object sender, EventArgs e)
-        {
-            SidebarTimer.Start();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
