@@ -33,6 +33,7 @@
             groupBox1 = new GroupBox();
             TitleTB = new TextBox();
             groupBox2 = new GroupBox();
+            WordToLetterLB = new Label();
             DescriptionTB = new RichTextBox();
             AddBTN = new Button();
             groupBox3 = new GroupBox();
@@ -73,6 +74,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(WordToLetterLB);
             groupBox2.Controls.Add(DescriptionTB);
             groupBox2.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox2.Location = new Point(12, 134);
@@ -81,6 +83,15 @@
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Description";
+            // 
+            // WordToLetterLB
+            // 
+            WordToLetterLB.AutoSize = true;
+            WordToLetterLB.Location = new Point(6, 274);
+            WordToLetterLB.Name = "WordToLetterLB";
+            WordToLetterLB.Size = new Size(14, 17);
+            WordToLetterLB.TabIndex = 5;
+            WordToLetterLB.Text = "x";
             // 
             // DescriptionTB
             // 
@@ -147,6 +158,7 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -162,5 +174,6 @@
         private Button AddBTN;
         private GroupBox groupBox3;
         private ComboBox PriorityCB;
+        private Label WordToLetterLB;
     }
 }

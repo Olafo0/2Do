@@ -16,8 +16,8 @@ namespace _2Do
     public partial class Adding2Do : Form
     {
 
-        // string connectionString = "Data Source=LC21205XX\\SQLEXPRESS;Initial Catalog=ToDoListDB;User ID =sa;Password=sa2023;"; School
-        string connectionString = "Data Source=DESKTOP-DNB9KRF;Initial Catalog=2DoDB;Integrated Security=True;";
+        string connectionString = "Data Source=LC21205XX\\SQLEXPRESS;Initial Catalog=ToDoListDB;User ID =sa;Password=sa2023;";
+        //string connectionString = "Data Source=DESKTOP-DNB9KRF;Initial Catalog=2DoDB;Integrated Security=True;";
         SqlConnection cnn;
         SqlCommand cmd;
 
@@ -83,7 +83,6 @@ namespace _2Do
 
         private void Adding2Do_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

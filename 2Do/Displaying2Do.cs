@@ -21,8 +21,9 @@ namespace _2Do
         List<Tasks> CurrentTasks = new List<Tasks>();
         string PriorityOutputter;
 
-        //  string connectionString = "Data Source=LC21205XX\\SQLEXPRESS;Initial Catalog=ToDoListDB;User ID =sa;Password=sa2023;"; string
+        //string connectionString = "Data Source=LC21205XX\\SQLEXPRESS;Initial Catalog=ToDoListDB;User ID =sa;Password=sa2023;"; 
         string connectionString = "Data Source=DESKTOP-DNB9KRF;Initial Catalog=2DoDB;Integrated Security=True;";
+
         SqlConnection cnn;
         SqlCommand command;
 
