@@ -19,9 +19,9 @@ namespace _2Do
     public partial class Displaying2Do : Form
     {
         List<Tasks> CurrentTasks = new List<Tasks>();
+        string PriorityOutputter;
 
-
-       //  string connectionString = "Data Source=LC21205XX\\SQLEXPRESS;Initial Catalog=ToDoListDB;User ID =sa;Password=sa2023;"; string
+        //  string connectionString = "Data Source=LC21205XX\\SQLEXPRESS;Initial Catalog=ToDoListDB;User ID =sa;Password=sa2023;"; string
         string connectionString = "Data Source=DESKTOP-DNB9KRF;Initial Catalog=2DoDB;Integrated Security=True;";
         SqlConnection cnn;
         SqlCommand command;
@@ -30,6 +30,29 @@ namespace _2Do
         {
             InitializeComponent();
         }
+
+        public void TaskOutputterMethod()
+        {
+            foreach (var task in CurrentTasks)
+            {
+
+                switch (task.Priority)
+                {
+                    case 1:
+                        PriorityOutputter = "High";
+                        break;
+                    case 2:
+                        PriorityOutputter = "Medium";
+                        break;
+                    case 3:
+                        PriorityOutputter = "Low";
+                        break;
+                }
+
+                TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Priority :{PriorityOutputter} \n Title : {task.ToDoTitle} \n ################## \n Descripition : {task.ToDoDesc} \n##################\n Complete? : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+            }
+        }
+
         private void Displaying2Do_Load(object sender, EventArgs e)
         {
             try
@@ -66,18 +89,31 @@ namespace _2Do
                         }
 
 
-                        Tasks CreateTask = new Tasks(ToDoID, ToDoTitle, ToDoDesc, Done, DateCreated, DateDone,);
+                        Tasks CreateTask = new Tasks(ToDoID, ToDoTitle, ToDoDesc, Done, DateCreated, DateDone, Priority);
                         CurrentTasks.Add(CreateTask);
                     }
                     command.Dispose();
                     cnn.Close();
-                    //
                     CurrentTasks = CurrentTasks.OrderBy(x => x.Priority).ToList();
 
                 }
                 foreach (var task in CurrentTasks)
                 {
-                    TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################## \n Descripition : {task.ToDoDesc} \n##################\n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+
+                    switch (task.Priority)
+                    {
+                        case 1:
+                            PriorityOutputter = "High";
+                            break;
+                        case 2:
+                            PriorityOutputter = "Medium";
+                            break;
+                        case 3:
+                            PriorityOutputter = "Low";
+                            break;
+                    }
+
+                    TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Priority :{PriorityOutputter} \n Title : {task.ToDoTitle} \n ################## \n Descripition : {task.ToDoDesc} \n##################\n Complete? : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
                 }
                 StatusTB.Text = CurrentTasks.Count.ToString();
             }
@@ -93,10 +129,7 @@ namespace _2Do
         private void ClearBTN_Click(object sender, EventArgs e)
         {
             TaskOutputter.Clear();
-            foreach (var task in CurrentTasks)
-            {
-                TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################## \n Descripition : {task.ToDoDesc} \n##################\n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
-            }
+            TaskOutputterMethod();
         }
 
         private void FindByIDBTN_Click(object sender, EventArgs e)
@@ -104,14 +137,28 @@ namespace _2Do
             try
             {
 
-                int inputBoxResponse = int.Parse(Interaction.InputBox("Enter in the Tasks ID", "Filter", "", 300, 100));
+                int inputBoxResponse = int.Parse(Interaction.InputBox("Enter in the Tasks ID", "Filter", "", 250, 100));
+
 
                 foreach (var task in CurrentTasks)
                 {
-                    TaskOutputter.Clear();
+
                     if (task.ToDoID == inputBoxResponse)
                     {
-                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                        switch (task.Priority)
+                        {
+                            case 1:
+                                PriorityOutputter = "High";
+                                break;
+                            case 2:
+                                PriorityOutputter = "Medium";
+                                break;
+                            case 3:
+                                PriorityOutputter = "Low";
+                                break;
+                        }
+                        TaskOutputter.Clear();
+                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Priority :{PriorityOutputter} \n Title : {task.ToDoTitle} \n ################## \n Descripition : {task.ToDoDesc} \n##################\n Complete? : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
                         break;
                     }
                     else
@@ -125,28 +172,81 @@ namespace _2Do
         private void FindByTitleBTN_Click(object sender, EventArgs e)
         {
 
-            string? inputBoxResponse = Interaction.InputBox("Enter the Task Title", "Filter", "", 300, 100);
+            string? inputBoxResponse = Interaction.InputBox("Enter the Task Title", "Filter", "", 250, 100);
 
             if (string.IsNullOrEmpty(inputBoxResponse))
             {
                 MessageBox.Show("You've haven't entered anything", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             else
             {
                 try
                 {
                     var foundTasks = CurrentTasks.Where(x => x.ToDoTitle.Contains(inputBoxResponse)).ToList();
-                    
+
+                    TaskOutputter.Clear();
                     foreach (var task in foundTasks)
                     {
-                        TaskOutputter.Clear();
-                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n #################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                        switch (task.Priority)
+                        {
+                            case 1:
+                                PriorityOutputter = "High";
+                                break;
+                            case 2:
+                                PriorityOutputter = "Medium";
+                                break;
+                            case 3:
+                                PriorityOutputter = "Low";
+                                break;
+                        }
+                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Priority :{PriorityOutputter} \n Title : {task.ToDoTitle} \n ################## \n Descripition : {task.ToDoDesc} \n##################\n Complete? : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
                     }
                 }
                 catch (Exception ex) { }
             }
         }
+        private void FindByPriorityBTN_Click(object sender, EventArgs e)
+        {
+            string? inputBoxResponse = Interaction.InputBox("Please enter the corresponding number : \n 1 - High priortiy \n 2 - Medium priortiy \n 3 - Low priortiy", "Filter", "", 250, 100);
 
+            TaskOutputter.Clear();
+            switch (int.Parse(inputBoxResponse))
+            {
+
+                // High priority
+                case 1:
+                    foreach (var task in CurrentTasks)
+                    {
+                        if (task.Priority == 1)
+                        {
+                            TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Priority :{"High"} \n Title : {task.ToDoTitle} \n ################## \n Descripition : {task.ToDoDesc} \n##################\n Complete? : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                        }
+                    }
+                    break;
+                // Medium priority
+                case 2:
+                    foreach (var task in CurrentTasks)
+                    {
+                        if (task.Priority == 2)
+                        {
+                            TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Priority :{"Medium"} \n Title : {task.ToDoTitle} \n ################## \n Descripition : {task.ToDoDesc} \n##################\n Complete? : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                        }
+                    }
+                    break;
+                // Low priority
+                case 3:
+                    foreach (var task in CurrentTasks)
+                    {
+                        if (task.Priority == 3)
+                        {
+
+                            TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Priority :{"Low"} \n Title : {task.ToDoTitle} \n ################## \n Descripition : {task.ToDoDesc} \n##################\n Complete? : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
+                        }
+                    }
+                    break;
+            }
+        }
         private void RemoveBTN_Click(object sender, EventArgs e)
         {
             string inputBoxResponse = Interaction.InputBox("Enter the Tasks ID to remove it", "Remove task", "", 300, 100);
@@ -175,10 +275,7 @@ namespace _2Do
                     CurrentTasks.Remove(foundTask);
 
                     TaskOutputter.Clear();
-                    foreach (var task in CurrentTasks)
-                    {
-                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
-                    }
+                    TaskOutputterMethod();
                 }
                 catch (Exception ex)
                 {
@@ -220,16 +317,44 @@ namespace _2Do
                     foundTask.DateDone = DateTime.Now;
 
                     TaskOutputter.Clear();
-                    foreach (var task in CurrentTasks)
-                    {
-                        TaskOutputter.AppendText($"- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n ID :{task.ToDoID} \n Title : {task.ToDoTitle} \n ################# \n Descripition : {task.ToDoDesc} \n#################n Status : {task.Done} \n Date Created : {task.DateCreated} \n Date Done : {task.DateDone} \n\n");
-                    }
+                    TaskOutputterMethod();
 
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+        private void ChnPriorityBTN_Click(object sender, EventArgs e)
+        {
+            int inputBoxResponseID = int.Parse(Interaction.InputBox("Enter the Task ID in which you want to change the priortiy","Task ID", "", 300, 100));
+            int inputBoxResponsePriority = int.Parse(Interaction.InputBox("To what Priority do you want to change this task to :  \n 1 - High priortiy \n 2 - Medium priortiy \n 3 - Low priortiy", "Change Priority", "", 300, 100));
+            try
+            {
+                using (cnn = new SqlConnection(connectionString))
+                {
+                    cnn.Open();
+                    string Query = $"UPDATE tbl_2DoList SET PriorityTask = {inputBoxResponsePriority} WHERE ToDoID = {inputBoxResponseID}";
+                    command = new SqlCommand(Query, cnn);
+                    command.ExecuteNonQuery();
+                }
+                command.Dispose();
+                cnn.Close();
+
+                foreach (var task in CurrentTasks)
+                {
+                    if (task.ToDoID == inputBoxResponseID)
+                    {
+                        task.Priority = inputBoxResponsePriority;
+                    }
+                }
+                TaskOutputter.Clear();
+                TaskOutputterMethod();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

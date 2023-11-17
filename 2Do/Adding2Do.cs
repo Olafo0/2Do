@@ -59,7 +59,7 @@ namespace _2Do
 
                 DateTime CurrentDate = DateTime.Now;
                 string formatedDate = CurrentDate.ToString("yyyy-MM-dd");
-                string Query = $"INSERT INTO tbl_2DoList(ToDoTitle,ToDoDesc,Done,DateCreated) VALUES('{TitleTB.Text}','{DescriptionTB.Text}',{0},'{formatedDate}')";
+                string Query = $"INSERT INTO tbl_2DoList(ToDoTitle,ToDoDesc,Done,DateCreated,PriorityTask) VALUES('{TitleTB.Text}','{DescriptionTB.Text}',{0},'{formatedDate}',{PriorityNumber})";
                 try
                 {
                     using (cnn = new SqlConnection(connectionString))
@@ -67,19 +67,18 @@ namespace _2Do
                         cnn.Open();
                         cmd = new SqlCommand(Query, cnn);
                         int rows = cmd.ExecuteNonQuery();
-
                     }
                     cmd.Dispose();
                     cnn.Close();
                     TitleTB.Text = "";
                     DescriptionTB.Text = "";
+                    PriorityCB.SelectedItem = null;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
         }
 
         private void Adding2Do_Load(object sender, EventArgs e)

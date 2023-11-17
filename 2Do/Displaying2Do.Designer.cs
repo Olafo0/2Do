@@ -36,9 +36,11 @@
             StatusTB = new TextBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            FindByPriorityBTN = new Button();
             groupBox3 = new GroupBox();
             RemoveBTN = new Button();
             MarkCompleteBTN = new Button();
+            ChnPriorityBTN = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -46,10 +48,11 @@
             // 
             // TaskOutputter
             // 
-            TaskOutputter.Location = new Point(134, 24);
+            TaskOutputter.BackColor = SystemColors.ActiveCaption;
+            TaskOutputter.Location = new Point(134, 12);
             TaskOutputter.Name = "TaskOutputter";
             TaskOutputter.ReadOnly = true;
-            TaskOutputter.Size = new Size(414, 327);
+            TaskOutputter.Size = new Size(414, 356);
             TaskOutputter.TabIndex = 0;
             TaskOutputter.Text = "";
             // 
@@ -59,9 +62,9 @@
             ClearBTN.Cursor = Cursors.Hand;
             ClearBTN.FlatStyle = FlatStyle.Flat;
             ClearBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            ClearBTN.Location = new Point(18, 328);
+            ClearBTN.Location = new Point(12, 345);
             ClearBTN.Name = "ClearBTN";
-            ClearBTN.Size = new Size(100, 23);
+            ClearBTN.Size = new Size(112, 23);
             ClearBTN.TabIndex = 2;
             ClearBTN.Text = "Clear";
             ClearBTN.UseVisualStyleBackColor = false;
@@ -98,9 +101,9 @@
             groupBox1.Controls.Add(StatusTB);
             groupBox1.Controls.Add(label1);
             groupBox1.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox1.Location = new Point(12, 357);
+            groupBox1.Location = new Point(12, 374);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(204, 113);
+            groupBox1.Size = new Size(204, 91);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Stats";
@@ -126,24 +129,39 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(FindByPriorityBTN);
             groupBox2.Controls.Add(FindByIDBTN);
             groupBox2.Controls.Add(FindByTitleBTN);
             groupBox2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox2.Location = new Point(12, 24);
+            groupBox2.Location = new Point(12, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(112, 100);
+            groupBox2.Size = new Size(112, 146);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "Filters";
             // 
+            // FindByPriorityBTN
+            // 
+            FindByPriorityBTN.Cursor = Cursors.Hand;
+            FindByPriorityBTN.FlatStyle = FlatStyle.Flat;
+            FindByPriorityBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            FindByPriorityBTN.Location = new Point(6, 102);
+            FindByPriorityBTN.Name = "FindByPriorityBTN";
+            FindByPriorityBTN.Size = new Size(100, 23);
+            FindByPriorityBTN.TabIndex = 5;
+            FindByPriorityBTN.Text = "Find by Priority";
+            FindByPriorityBTN.UseVisualStyleBackColor = true;
+            FindByPriorityBTN.Click += FindByPriorityBTN_Click;
+            // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(ChnPriorityBTN);
             groupBox3.Controls.Add(RemoveBTN);
             groupBox3.Controls.Add(MarkCompleteBTN);
             groupBox3.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox3.Location = new Point(12, 130);
+            groupBox3.Location = new Point(12, 164);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(112, 100);
+            groupBox3.Size = new Size(112, 175);
             groupBox3.TabIndex = 7;
             groupBox3.TabStop = false;
             groupBox3.Text = "Edit";
@@ -173,6 +191,19 @@
             MarkCompleteBTN.Text = "Mark complete";
             MarkCompleteBTN.UseVisualStyleBackColor = true;
             MarkCompleteBTN.Click += MarkCompleteBTN_Click;
+            // 
+            // ChnPriorityBTN
+            // 
+            ChnPriorityBTN.Cursor = Cursors.Hand;
+            ChnPriorityBTN.FlatStyle = FlatStyle.Flat;
+            ChnPriorityBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ChnPriorityBTN.Location = new Point(6, 102);
+            ChnPriorityBTN.Name = "ChnPriorityBTN";
+            ChnPriorityBTN.Size = new Size(100, 44);
+            ChnPriorityBTN.TabIndex = 5;
+            ChnPriorityBTN.Text = "Change task Priority";
+            ChnPriorityBTN.UseVisualStyleBackColor = true;
+            ChnPriorityBTN.Click += ChnPriorityBTN_Click;
             // 
             // Displaying2Do
             // 
@@ -207,5 +238,7 @@
         private GroupBox groupBox3;
         private Button RemoveBTN;
         private Button MarkCompleteBTN;
+        private Button FindByPriorityBTN;
+        private Button ChnPriorityBTN;
     }
 }
