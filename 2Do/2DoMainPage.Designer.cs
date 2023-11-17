@@ -29,58 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
-            Sidebar = new FlowLayoutPanel();
-            panel1 = new Panel();
-            label1 = new Label();
             panel2 = new Panel();
             ViewToDoBTN = new Button();
             panel3 = new Panel();
             AddTaskPageBTN = new Button();
             MainDisplay = new Panel();
-            Sidebar.SuspendLayout();
-            panel1.SuspendLayout();
+            panel4 = new Panel();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
-            // 
-            // Sidebar
-            // 
-            Sidebar.BackColor = SystemColors.ControlDarkDark;
-            Sidebar.Controls.Add(panel1);
-            Sidebar.Controls.Add(panel2);
-            Sidebar.Controls.Add(panel3);
-            Sidebar.Location = new Point(0, 0);
-            Sidebar.MaximumSize = new Size(139, 483);
-            Sidebar.MinimumSize = new Size(139, 44);
-            Sidebar.Name = "Sidebar";
-            Sidebar.Size = new Size(139, 482);
-            Sidebar.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(label1);
-            panel1.Location = new Point(3, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(132, 41);
-            panel1.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(43, 12);
-            label1.Name = "label1";
-            label1.Size = new Size(41, 17);
-            label1.TabIndex = 1;
-            label1.Text = "Menu";
-            label1.Click += label1_Click;
             // 
             // panel2
             // 
             panel2.Controls.Add(ViewToDoBTN);
-            panel2.Location = new Point(3, 50);
+            panel2.Location = new Point(0, 72);
             panel2.Name = "panel2";
-            panel2.Size = new Size(144, 37);
+            panel2.Size = new Size(139, 37);
             panel2.TabIndex = 2;
             // 
             // ViewToDoBTN
@@ -90,7 +55,7 @@
             ViewToDoBTN.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             ViewToDoBTN.Image = (Image)resources.GetObject("ViewToDoBTN.Image");
             ViewToDoBTN.ImageAlign = ContentAlignment.MiddleLeft;
-            ViewToDoBTN.Location = new Point(-22, -15);
+            ViewToDoBTN.Location = new Point(-17, -14);
             ViewToDoBTN.Name = "ViewToDoBTN";
             ViewToDoBTN.Padding = new Padding(20, 0, 0, 0);
             ViewToDoBTN.Size = new Size(172, 71);
@@ -103,7 +68,7 @@
             // panel3
             // 
             panel3.Controls.Add(AddTaskPageBTN);
-            panel3.Location = new Point(3, 93);
+            panel3.Location = new Point(0, 127);
             panel3.Name = "panel3";
             panel3.Size = new Size(144, 37);
             panel3.TabIndex = 5;
@@ -115,10 +80,10 @@
             AddTaskPageBTN.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             AddTaskPageBTN.Image = (Image)resources.GetObject("AddTaskPageBTN.Image");
             AddTaskPageBTN.ImageAlign = ContentAlignment.MiddleLeft;
-            AddTaskPageBTN.Location = new Point(-20, -14);
+            AddTaskPageBTN.Location = new Point(-14, -14);
             AddTaskPageBTN.Name = "AddTaskPageBTN";
             AddTaskPageBTN.Padding = new Padding(20, 0, 0, 0);
-            AddTaskPageBTN.Size = new Size(172, 71);
+            AddTaskPageBTN.Size = new Size(175, 67);
             AddTaskPageBTN.TabIndex = 4;
             AddTaskPageBTN.Text = "          Add a 2Do";
             AddTaskPageBTN.TextAlign = ContentAlignment.MiddleLeft;
@@ -127,41 +92,49 @@
             // 
             // MainDisplay
             // 
-            MainDisplay.Location = new Point(141, 0);
+            MainDisplay.Location = new Point(145, 0);
             MainDisplay.Name = "MainDisplay";
-            MainDisplay.Size = new Size(560, 482);
+            MainDisplay.Size = new Size(556, 482);
             MainDisplay.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = SystemColors.ControlDarkDark;
+            panel4.BackgroundImage = (Image)resources.GetObject("panel4.BackgroundImage");
+            panel4.Controls.Add(panel2);
+            panel4.Controls.Add(panel3);
+            panel4.Dock = DockStyle.Left;
+            panel4.Location = new Point(0, 0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(139, 483);
+            panel4.TabIndex = 0;
             // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlDarkDark;
             ClientSize = new Size(702, 483);
+            Controls.Add(panel4);
             Controls.Add(MainDisplay);
-            Controls.Add(Sidebar);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "2Do";
             Load += MainPage_Load;
-            Sidebar.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
+            panel4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private FlowLayoutPanel Sidebar;
-        private Panel panel1;
         private Panel panel2;
         private Button ViewToDoBTN;
         private Panel panel3;
         private Button AddTaskPageBTN;
-        private Label label1;
         private Panel MainDisplay;
+        private Panel panel4;
     }
 }

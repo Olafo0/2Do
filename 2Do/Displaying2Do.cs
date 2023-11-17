@@ -328,7 +328,7 @@ namespace _2Do
         }
         private void ChnPriorityBTN_Click(object sender, EventArgs e)
         {
-            int inputBoxResponseID = int.Parse(Interaction.InputBox("Enter the Task ID in which you want to change the priortiy","Task ID", "", 300, 100));
+            int inputBoxResponseID = int.Parse(Interaction.InputBox("Enter the Task ID in which you want to change the priortiy", "Task ID", "", 300, 100));
             int inputBoxResponsePriority = int.Parse(Interaction.InputBox("To what Priority do you want to change this task to :  \n 1 - High priortiy \n 2 - Medium priortiy \n 3 - Low priortiy", "Change Priority", "", 300, 100));
             try
             {
@@ -352,9 +352,9 @@ namespace _2Do
                 TaskOutputter.Clear();
                 TaskOutputterMethod();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

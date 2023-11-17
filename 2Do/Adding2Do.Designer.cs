@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Adding2Do));
             label1 = new Label();
             groupBox1 = new GroupBox();
             TitleTB = new TextBox();
@@ -64,6 +65,7 @@
             // 
             // TitleTB
             // 
+            TitleTB.BackColor = SystemColors.ButtonShadow;
             TitleTB.Location = new Point(43, 41);
             TitleTB.Name = "TitleTB";
             TitleTB.Size = new Size(156, 25);
@@ -82,6 +84,7 @@
             // 
             // DescriptionTB
             // 
+            DescriptionTB.BackColor = SystemColors.ButtonShadow;
             DescriptionTB.Location = new Point(6, 24);
             DescriptionTB.Name = "DescriptionTB";
             DescriptionTB.Size = new Size(236, 267);
@@ -90,15 +93,16 @@
             // 
             // AddBTN
             // 
+            AddBTN.BackColor = Color.Green;
             AddBTN.Cursor = Cursors.Hand;
             AddBTN.FlatStyle = FlatStyle.Flat;
             AddBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            AddBTN.Location = new Point(344, 372);
+            AddBTN.Location = new Point(344, 384);
             AddBTN.Name = "AddBTN";
             AddBTN.Size = new Size(123, 53);
             AddBTN.TabIndex = 3;
             AddBTN.Text = "Add";
-            AddBTN.UseVisualStyleBackColor = true;
+            AddBTN.UseVisualStyleBackColor = false;
             AddBTN.Click += AddBTN_Click;
             // 
             // groupBox3
@@ -113,6 +117,7 @@
             // 
             // PriorityCB
             // 
+            PriorityCB.BackColor = SystemColors.ButtonShadow;
             PriorityCB.DropDownStyle = ComboBoxStyle.DropDownList;
             PriorityCB.FormattingEnabled = true;
             PriorityCB.Items.AddRange(new object[] { "High", "Medium", "Low" });
@@ -125,12 +130,16 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlDarkDark;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(544, 443);
             Controls.Add(groupBox3);
             Controls.Add(AddBTN);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(label1);
+            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Name = "Adding2Do";
             Text = "Adding2Do";

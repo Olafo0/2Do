@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Displaying2Do));
             TaskOutputter = new RichTextBox();
             ClearBTN = new Button();
             FindByIDBTN = new Button();
@@ -38,9 +39,9 @@
             groupBox2 = new GroupBox();
             FindByPriorityBTN = new Button();
             groupBox3 = new GroupBox();
+            ChnPriorityBTN = new Button();
             RemoveBTN = new Button();
             MarkCompleteBTN = new Button();
-            ChnPriorityBTN = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -48,7 +49,7 @@
             // 
             // TaskOutputter
             // 
-            TaskOutputter.BackColor = SystemColors.ActiveCaption;
+            TaskOutputter.BackColor = SystemColors.ControlDark;
             TaskOutputter.Location = new Point(134, 12);
             TaskOutputter.Name = "TaskOutputter";
             TaskOutputter.ReadOnly = true;
@@ -72,6 +73,7 @@
             // 
             // FindByIDBTN
             // 
+            FindByIDBTN.BackColor = SystemColors.ButtonShadow;
             FindByIDBTN.Cursor = Cursors.Hand;
             FindByIDBTN.FlatStyle = FlatStyle.Flat;
             FindByIDBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -80,11 +82,12 @@
             FindByIDBTN.Size = new Size(100, 23);
             FindByIDBTN.TabIndex = 3;
             FindByIDBTN.Text = "Find by ID";
-            FindByIDBTN.UseVisualStyleBackColor = true;
+            FindByIDBTN.UseVisualStyleBackColor = false;
             FindByIDBTN.Click += FindByIDBTN_Click;
             // 
             // FindByTitleBTN
             // 
+            FindByTitleBTN.BackColor = SystemColors.ButtonShadow;
             FindByTitleBTN.Cursor = Cursors.Hand;
             FindByTitleBTN.FlatStyle = FlatStyle.Flat;
             FindByTitleBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -93,7 +96,7 @@
             FindByTitleBTN.Size = new Size(100, 23);
             FindByTitleBTN.TabIndex = 4;
             FindByTitleBTN.Text = "Find by Title";
-            FindByTitleBTN.UseVisualStyleBackColor = true;
+            FindByTitleBTN.UseVisualStyleBackColor = false;
             FindByTitleBTN.Click += FindByTitleBTN_Click;
             // 
             // groupBox1
@@ -110,6 +113,7 @@
             // 
             // StatusTB
             // 
+            StatusTB.BackColor = SystemColors.ButtonShadow;
             StatusTB.Cursor = Cursors.No;
             StatusTB.Location = new Point(78, 20);
             StatusTB.Name = "StatusTB";
@@ -142,6 +146,7 @@
             // 
             // FindByPriorityBTN
             // 
+            FindByPriorityBTN.BackColor = SystemColors.ButtonShadow;
             FindByPriorityBTN.Cursor = Cursors.Hand;
             FindByPriorityBTN.FlatStyle = FlatStyle.Flat;
             FindByPriorityBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -150,7 +155,7 @@
             FindByPriorityBTN.Size = new Size(100, 23);
             FindByPriorityBTN.TabIndex = 5;
             FindByPriorityBTN.Text = "Find by Priority";
-            FindByPriorityBTN.UseVisualStyleBackColor = true;
+            FindByPriorityBTN.UseVisualStyleBackColor = false;
             FindByPriorityBTN.Click += FindByPriorityBTN_Click;
             // 
             // groupBox3
@@ -166,34 +171,9 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Edit";
             // 
-            // RemoveBTN
-            // 
-            RemoveBTN.Cursor = Cursors.Hand;
-            RemoveBTN.FlatStyle = FlatStyle.Flat;
-            RemoveBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            RemoveBTN.Location = new Point(6, 22);
-            RemoveBTN.Name = "RemoveBTN";
-            RemoveBTN.Size = new Size(100, 23);
-            RemoveBTN.TabIndex = 3;
-            RemoveBTN.Text = "Remove";
-            RemoveBTN.UseVisualStyleBackColor = true;
-            RemoveBTN.Click += RemoveBTN_Click;
-            // 
-            // MarkCompleteBTN
-            // 
-            MarkCompleteBTN.Cursor = Cursors.Hand;
-            MarkCompleteBTN.FlatStyle = FlatStyle.Flat;
-            MarkCompleteBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            MarkCompleteBTN.Location = new Point(6, 62);
-            MarkCompleteBTN.Name = "MarkCompleteBTN";
-            MarkCompleteBTN.Size = new Size(100, 23);
-            MarkCompleteBTN.TabIndex = 4;
-            MarkCompleteBTN.Text = "Mark complete";
-            MarkCompleteBTN.UseVisualStyleBackColor = true;
-            MarkCompleteBTN.Click += MarkCompleteBTN_Click;
-            // 
             // ChnPriorityBTN
             // 
+            ChnPriorityBTN.BackColor = SystemColors.ButtonShadow;
             ChnPriorityBTN.Cursor = Cursors.Hand;
             ChnPriorityBTN.FlatStyle = FlatStyle.Flat;
             ChnPriorityBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -202,19 +182,51 @@
             ChnPriorityBTN.Size = new Size(100, 44);
             ChnPriorityBTN.TabIndex = 5;
             ChnPriorityBTN.Text = "Change task Priority";
-            ChnPriorityBTN.UseVisualStyleBackColor = true;
+            ChnPriorityBTN.UseVisualStyleBackColor = false;
             ChnPriorityBTN.Click += ChnPriorityBTN_Click;
+            // 
+            // RemoveBTN
+            // 
+            RemoveBTN.BackColor = Color.Brown;
+            RemoveBTN.Cursor = Cursors.Hand;
+            RemoveBTN.FlatStyle = FlatStyle.Flat;
+            RemoveBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            RemoveBTN.Location = new Point(6, 22);
+            RemoveBTN.Name = "RemoveBTN";
+            RemoveBTN.Size = new Size(100, 23);
+            RemoveBTN.TabIndex = 3;
+            RemoveBTN.Text = "Remove";
+            RemoveBTN.UseVisualStyleBackColor = false;
+            RemoveBTN.Click += RemoveBTN_Click;
+            // 
+            // MarkCompleteBTN
+            // 
+            MarkCompleteBTN.BackColor = Color.ForestGreen;
+            MarkCompleteBTN.Cursor = Cursors.Hand;
+            MarkCompleteBTN.FlatStyle = FlatStyle.Flat;
+            MarkCompleteBTN.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            MarkCompleteBTN.Location = new Point(6, 62);
+            MarkCompleteBTN.Name = "MarkCompleteBTN";
+            MarkCompleteBTN.Size = new Size(100, 23);
+            MarkCompleteBTN.TabIndex = 4;
+            MarkCompleteBTN.Text = "Mark complete";
+            MarkCompleteBTN.UseVisualStyleBackColor = false;
+            MarkCompleteBTN.Click += MarkCompleteBTN_Click;
             // 
             // Displaying2Do
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlDarkDark;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(560, 482);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(ClearBTN);
             Controls.Add(TaskOutputter);
+            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Name = "Displaying2Do";
             Load += Displaying2Do_Load;
